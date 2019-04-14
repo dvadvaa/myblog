@@ -1,0 +1,33 @@
+@layout('main')
+
+@section('content')
+@if(old('notification'))
+<div class="alert alert-success">
+    {{old('notification')}}
+</div>
+@endif
+<a href="/posts">Go back!</a>
+<hr>
+<h1>{{ post.title }}</h1>
+    <p>{{ post.body }}</p>
+<hr>
+<form action="/posts/{{ id }}" method="POST">
+<div class="input-group">
+        {{ csrfField() }}
+        <textarea class="form-control" aria-label="With textarea" name="body"></textarea>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+</form>
+@each(comment in comments)
+<div class="col-sm-5">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+        <strong>{{comment.author.fetch().username}}</strong> <span class="text-muted">{{ comment.created_at }}</span>
+        </div>
+        <div class="panel-body">
+        {{ comment.body }}
+        </div>
+        </div>
+        </div>
+@endeach
+@endsection
