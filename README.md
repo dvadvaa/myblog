@@ -1,31 +1,16 @@
-# Adonis fullstack application
+# AdonisJS Blog by 2d4me<3
 
-This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
-
-1. Bodyparser
-2. Session
-3. Authentication
-4. Web security middleware
-5. CORS
-6. Edge template engine
-7. Lucid ORM
-8. Migrations and seeds
+This is the blog on AdonisJS
+1. Registraton
+2. Login
+3. Users
+4. Posts
+5. Create posts
+6. Comments
+and more...?
 
 ## Setup
 
-Use the adonis command to install the blueprint
-
-```bash
-adonis new yardstick
-```
-
-or manually clone the repo and then run `npm install`.
-
-
-### Migrations
-
-Run the following command to run startup migrations.
-
-```js
-adonis migration:run
-```
+Copy flooder on your disk.
+Install MySQL.
+Start server.
