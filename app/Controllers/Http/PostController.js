@@ -28,19 +28,20 @@ class PostController {
 
     async details({ response, params, view }) {
         const post = await Post.find(params.id)
-        const comments = await post.comments().with('author').fetch()
-        
+
         if(!post){
-        return response.redirect('/posts')
+            return response.redirect('/posts')
         }
-        
+
+        const comments = await post.comments().with('author').fetch()
+
         return view.render('posts.details', {
-        post: post,
-        id:params.id,
-        comments:comments.toJSON(),
+            post: post,
+            id:params.id,
+            comments:comments.toJSON()
         })
-        
-        }
+
+    }
 
     async add({ view, auth }){
         if(auth.user.type === '1'){
