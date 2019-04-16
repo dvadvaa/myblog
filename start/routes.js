@@ -26,6 +26,7 @@ Route.post('/posts/:id', 'CommentController.add')
 }).middleware(['auth'])
 Route.get('/posts/:id', 'PostController.details')
 Route.post('/posts', 'PostController.store')
+Route.post('/posts/:id/delete', 'PostController.destroy')
 
 
 //user

@@ -10,6 +10,10 @@
 <ul class="list-group">
 @each(post in posts)
 <li class="list-group-item"><a href="/posts/{{ post.id }}">{{ post.title }}</a></li>
+<form action="/posts/{{ post.id }}/delete" method="POST">
+    {{ csrfField() }}
+    <button class="btn btn-primary" type="submit">delete</button>
+</form>
 @endeach
 </ul>
 @endsection

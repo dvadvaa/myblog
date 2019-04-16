@@ -10,7 +10,7 @@ const User = use('App/Models/User')
 const { validate } = use('Validator')
 
 class PostController {
-    async index( { view, auth } ) {
+    async index( { view, auth, params } ) {
         // const posts = [
         //     {title:'Post one', body:'This is post number one'},
         //     {title:'Post two', body:'This is post number two'},
@@ -22,6 +22,7 @@ class PostController {
         return view.render('posts.index', {
             title: 'Latest Posts',
             posts: posts.toJSON(),
+            id: params.id
         })
     }
 
@@ -72,6 +73,12 @@ class PostController {
         await post.save()
 
         session.flash({ notification: 'You create new post!' })
+
+        return response.redirect('/posts')
+    }
+    async destroy({ params, request, response}){
+        const post = await Post.findOrFail(params.id)
+        await post.delete()
 
         return response.redirect('/posts')
     }
