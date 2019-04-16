@@ -22,11 +22,9 @@ Route.get('/posts', 'PostController.index')
 Route.group(() => {
 Route.get('/posts/add', 'PostController.add')
 Route.post('/logout', 'UserController.destroy')
+Route.post('/posts/:id', 'CommentController.add')
 }).middleware(['auth'])
 Route.get('/posts/:id', 'PostController.details')
-
-Route.post('/posts/:id', 'CommentController.add')
-
 Route.post('/posts', 'PostController.store')
 
 
