@@ -15,9 +15,10 @@
 <form action="/posts/{{ id }}" method="POST">
 <div class="input-group">
         {{ csrfField() }}
-        <textarea class="form-control" aria-label="With textarea" name="body"></textarea>
+        <textarea class="form-control" aria-label="With textarea" name="body">{{ old('body','') }}</textarea>
         <button class="btn btn-primary" type="submit">Submit</button>
       </div>
+      {{ elIf('<span class="text-danger">$self</span>', getErrorFor('body'), hasErrorFor('body')) }}
 </form>
 @endif
 @each(comment in comments)
