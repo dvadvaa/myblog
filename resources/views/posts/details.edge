@@ -11,7 +11,7 @@
 <h1>{{ post.title }}</h1>
     <p>{{ post.body }}</p>
 <hr>
-@if(auth.check())
+@if(auth.user.id)
 <form action="/posts/{{ id }}" method="POST">
 <div class="input-group">
         {{ csrfField() }}
