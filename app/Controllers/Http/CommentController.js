@@ -15,13 +15,22 @@ class CommentController {
         })
     }
     async add({ auth, request, response,params, session}){
+          // Validate input
+          const validation = await validate(request.all(), {
+            body: 'required|min:10|max:255'
+        })
+
+        if(validation.fails()){
+            session.withErrors(validation.messages()).flashAll()
+            return response.redirect('back')
+        }
         const comment = new Comment();
 
         comment.author_id = auth.user.id,
         comment.post_id = params.id,
         comment.body = request.input('body')
         
-        session.flash({ notification: 'You add new comment!' })
+        session.flash({ notification: 'You have successfully added a comment.' })
         await comment.save()
         return response.redirect('back')
     }
