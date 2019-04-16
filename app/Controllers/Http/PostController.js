@@ -76,11 +76,13 @@ class PostController {
 
         return response.redirect('/posts')
     }
-    async destroy({ params, request, response}){
+    async destroy({ params, auth, request, response}){
+        if(auth.user.type === "1"){
         const post = await Post.findOrFail(params.id)
         await post.delete()
 
         return response.redirect('/posts')
+        }
     }
 }
 module.exports = PostController
