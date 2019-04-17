@@ -1,5 +1,8 @@
 'use strict'
 
+const sd = require('showdown')
+sd.setFlavor('original')
+
 //bring in model
 const Post = use('App/Models/Post')
 const Comment = use('App/Models/Comments')
@@ -27,11 +30,20 @@ class PostController {
     }
 
     async details({ response, params, view }) {
+        const conv = new showdown.Converter({
+            metadata: true,
+            emoji: true,
+            simpleLineBreaks: true,
+            ghMentions: true,
+            ghMentionsLink: "/profile/@{u}?from=mention",
+            tables: true
+        })
+
         const post = await Post.find(params.id)
 
-        if(!post){
-            return response.redirect('/posts')
-        }
+        if(!post) return response.redirect('/posts')
+
+        post.body = conv.makeHtml(post.body)
 
         const comments = await post.comments().with('author').fetch()
 
@@ -69,7 +81,7 @@ class PostController {
         post.user_id = auth.user.id
         post.title = request.input('title')
         post.body = request.input('body')
-        
+
 
         await post.save()
 
