@@ -30,7 +30,7 @@ class PostController {
     }
 
     async details({ response, params, view }) {
-        const conv = new showdown.Converter({
+        const conv = new sd.Converter({
             metadata: true,
             emoji: true,
             simpleLineBreaks: true,

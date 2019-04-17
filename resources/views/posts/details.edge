@@ -9,7 +9,7 @@
 <a href="/posts">Go back!</a>
 <hr>
 <h1>{{ post.title }}</h1>
-    <p>{{ post.body }}</p>
+    <p>{{{ post.body }}}</p>
 <hr>
 @if(auth.user.id)
 <form action="/posts/{{ id }}" method="POST">
