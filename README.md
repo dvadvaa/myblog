@@ -1,4 +1,4 @@
-# AdonisJS Blog by 2d4me<3
+# AdonisJS Blog by 2d4me
 
 This is the blog on AdonisJS
 1. Registraton
@@ -7,10 +7,3 @@ This is the blog on AdonisJS
 4. Posts
 5. Create posts
 6. Comments
-and more...?
-
-## Setup
-
-Copy flooder on your disk.
-Install MySQL.
-Start server.
